@@ -9,10 +9,9 @@ public:
         for (int i = 0; i < init_row; i++) {
             for (int j = 0; j < init_col; j++) {
                 int k = i * init_col + j;
-                res[k / c][k % c] = nums[i][j];
+                rev[k / c][k % c] = nums[i][j];
             }
         }
-
         return res;
     }
 };
