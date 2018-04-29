@@ -5,4 +5,4 @@ class Solution(object):
             if num in h and i - h[num] <= k:
                 return True
             h[num] = i
-        return False
+        return False  
