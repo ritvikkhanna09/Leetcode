@@ -13,11 +13,8 @@ public:
         if (!root) return 0;
         int left_depth=minDepth(root->left);
         int right_depth=minDepth(root->right);
-        if(left_depth*right_depth==0){
+        if(left_depth*right_depth==0)
             return max(left_depth,right_depth)+1;
-        }
-        else{
-        int min_val=min(left_depth,right_depth);
-        return min_val+1;}
-    }
+        else
+        return min(left_depth,right_depth)+1;}
 };
