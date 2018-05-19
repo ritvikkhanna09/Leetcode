@@ -1,13 +1,14 @@
 class Solution {
 public:
     int minCostClimbingStairs(vector<int>& cost) {
-        return go(cost, cost.size());
-    }
-private:
-    unordered_map<int,int> memo;
-    int go(vector<int>& c, int n){
-        if (memo.count(n)) return memo[n];
-        if (n<=1) return memo[n]=c[n];
-        return memo[n]=(n==c.size() ? 0 : c[n])+min(go(c,n-2),go(c,n-1));
+        int n=cost.size();
+        vector<int> arr(n);
+        arr[0]=cost[0];
+        arr[1]=cost[1];
+        for (int i=2; i<n; ++i)
+            arr[i]=cost[i]+min(arr[i-2],arr[i-1]);
+        for (int i=0; i<arr.size(); ++i)
+            cout<<arr[i]<<" ";
+        return min(arr[n-2],arr[n-1]);
     }
 };
