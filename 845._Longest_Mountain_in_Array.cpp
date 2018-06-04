@@ -1,37 +1,28 @@
 class Solution {
 public:
-    int longestMountain(vector<int>& a) {
-        int n = a.size();
-        if (n == 0) return 0;
-        vector<int> L(n), R(n);
-        L[0] = 1;
-        for (int i = 1; i < n; ++i) {
-            if (a[i] > a[i - 1]) {
-                L[i] = L[i - 1] + 1;
-            } else {
-                L[i] = 1;
-            }
+    int longestMountain(vector<int>& A) {
+        if(A.empty())
+            return 0;
+        vector<int> L(A.size()),R(A.size());
+        L[0]=1;
+        for(int i=1;i<A.size();i++){
+            if(A[i]>A[i-1])
+                L[i]=L[i-1]+1;
+            else
+                L[i]=1;
         }
-        R[n - 1] = 1;
-        for (int i = n - 2; i >= 0; --i) {
-            if (a[i] > a[i + 1]) {
-                R[i] = R[i + 1] + 1;
-            } else {
-                R[i] = 1;
-            }
+        R[R.size()-1]=1;
+        for(int i=R.size()-2;i>=0;i--){
+            if(A[i]>A[i+1])
+                R[i]=R[i+1]+1;
+            else
+                R[i]=1;
         }
-        for (auto i:L){
-            cout<<i<<" ";
+        int max_ele=0;
+        for(int i=1;i<A.size()-1;i++){
+            if(L[i]>1 && R[i]>1)
+                max_ele=max(max_ele,L[i]+R[i]-1);
         }
-        cout<<endl;
-        for (auto i:R){
-            cout<<i<<" ";
-        }
-        int ret = 0;
-        for (int i = 1; i < n - 1; ++i) {
-            if (L[i] > 1 && R[i] > 1) ret = max(ret, L[i] + R[i] - 1);
-        }
-        if (ret < 3) ret = 0;
-        return ret;
+        return max_ele;
     }
 };
