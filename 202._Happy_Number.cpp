@@ -1,26 +1,23 @@
 class Solution {
 public:
-    int sumofproducts(int n){
+    int util(int n){
         int sum=0;
-        while(n>0){
+        while(n){
             int r=n%10;
-            sum+=r*r;
+            sum+=(r*r);
             n/=10;
         }
         return sum;
     }
-    
     bool isHappy(int n) {
-        vector<int> allproducts;
+        vector<int> arr;
         while(true){
-            int temp=sumofproducts(n);
-            if(temp==1)
-                return true;
-            if(find(allproducts.begin(),allproducts.end(),temp)!=allproducts.end()){
-                return false;
-            }
-            allproducts.push_back(temp);
+            int temp=util(n);
+            if(temp==1) return true;
+            if(find(arr.begin(),arr.end(),temp)!=arr.end()) return false;
+            arr.push_back(temp);
             n=temp;
         }
+        return false;
     }
 };
