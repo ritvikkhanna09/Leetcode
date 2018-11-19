@@ -1,14 +1,9 @@
 class Solution {
 public:
-    bool isMonotonic(vector<int>& A) {
-        int increase = 0, decrease = 0;
-        for(int i = 1; i < A.size(); i++){
-            if(A[i] > A[i-1]){
-                increase++;
-            }else if(A[i] < A[i-1]){
-                decrease++;
-            }
-        }
-        return increase * decrease == 0;
+bool isMonotonic(vector<int> A) {
+        bool inc = true, dec = true;
+        for (int i = 1; i < A.size(); ++i)
+            inc &= A[i - 1] <= A[i], dec &= A[i - 1] >= A[i];
+        return inc || dec;
     }
 };
